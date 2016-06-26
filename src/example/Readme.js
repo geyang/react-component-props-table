@@ -5,55 +5,83 @@ import React from "react";
 import Markdown from "react-markdownit";
 
 import Highlight from "react-highlight";
-import Badge from "../../react-doc-components/react-badge";
-import PropsTable from "../../react-doc-components/react-component-props-table";
-
-import HappySandwichMakerExample from "../HappySandwichMaker.example";
-import HappySandwichMakerSource from "!!raw!../HappySandwichMaker.example";
-const HappySandwichMakerAST = require("!!react-docgen!../HappySandwichMaker");
+import PropsTableExample from "../react-component-props-table.example";
+import ExampleSource from "!!raw!../react-component-props-table.example";
+import PropsTableMetaData from "!!react-docgen!../react-component-props-table";
+import PropsTableSource from "!!raw!../react-component-props-table";
 
 export default function Readme({}) {
   return (
     <Markdown stripIndent={true}>{`
-      # React ES6 Component Template
+      # Props Table for React ES6 Components
 
-      [![github](https://img.shields.io/github/downloads/episodeyang/react-es6-template/total.svg?style=flat-square&maxAge=2592000)]()
+      [![github](https://img.shields.io/github/downloads/episodeyang/react-component-props-table/total.svg?style=flat-square&maxAge=2592000)]()
 
-      A template repo for react components written with es6 syntax.
+      A Table Component to visualize react-es6-metadata, used in conjunction with
+      [react-docgen-loader](https://www.npmjs.com/package/react-docgen-loader).
       ## Usage
 
       ~~~shell
-      git clone https://github.com/episodeyang/react-es6-template
+        npm install --save react-component-props-table
       ~~~
 
-      After cloning from gitHub, you can run the example by doing
-      ~~~shell
-      npm run serve-docs
-      ~~~
+      ### Live Demo: how does the prop table look like?
 
-      And then open your browser at [http://localhost:5000](http://localhost:5000).
-
-      This one calls webpack (you should look at the \`package.json\` source) and uses the
-      webpack-dev-server to serve from \`./src/example/\` with hot module reloading.
-
-      ### How is this README written:
-      This readme is written with react and markdown. It includes:
-      1. a **live react component demo**
-      2. a table of the component's props that is generated automatically
-      3. **source** of the example component
-
-      ## Example Component: \`HappySandwichMaker\`
-      This component makes you a delicious Subway sandwich.
+      Here is a **live** example: the props table of the props table component itself.
       `}
-      <HappySandwichMakerExample/>
-      ### Props
-      {`This table below is generated automatically`}
-      <PropsTable propMetaData={HappySandwichMakerAST.props}
-      />{`
+      <PropsTableExample/>
+      {`
+      "This is amazing!" you say. "now, how is this table generated?"
+      > &ldquo;Now, how is this table generated?&rdquo;
+
+      Here is how.
+
       ### Usage Example
-      
-      The source code below of the example above is loaded using the webpack raw loader.`}
-      <Highlight>{HappySandwichMakerSource}</Highlight>
+
+      The source code below is the actual example script.
+
+      **Notice** that we are only passing the \`.props\` field of the metaData into
+      the \`PropsTable\` component.
+
+      `}
+      <Highlight>{ExampleSource}</Highlight>
+      {`
+      #### More Details
+
+      The \`webpack react-docgen-loader\` runs the \`react-docgen\` cli tool, and gets
+      a metaData object in the form of the following example (loaded from source).
+      `}
+      <Highlight>{JSON.stringify(PropsTableMetaData, null, 4)}</Highlight>
+      {`
+      > &ldquo;How to write these meta data in a component?&rdquo; You ask.
+
+      #### Component Comment String Example
+
+      Questions can be directed to the \`react-docgen\` repository on GitHub. Here is a
+      simple example for a pure function component written with ES6 syntax:
+
+      `}
+      <Highlight className="javascript">{PropsTableSource}</Highlight>
+      {`
+      You can test whether your component is written according to \`react-docgen\`'s liking
+      by running the following:
+      `}
+      <div className="flex-column" style={{alignItems: "center", width: "100%"}}>
+        <img width="90%" style={{maxWidth: "600px", flex: "0 0 auto"}}
+             src="using-react-docgen-in-command-line-Screenshot-2016-06-26-15.40.38.png"/>
+      </div>
+      {`
+      #### Issues and questions:
+
+      Questions regarding react-docgen and how to write component doc strings,
+      please submit them to the react-docgen issue tracker. Maintainers there are
+      **very** responsive.
+
+      Questions or issues wth this table component can be submitted on [Github issues](https://github.com/episodeyang/react-component-props-table/issues).
+
+      ~~ Built with ❤️ ~~
+      `}
+
     </Markdown>
   )
 }
