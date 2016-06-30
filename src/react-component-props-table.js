@@ -34,7 +34,10 @@ export default function ComponentPropsTable(props) {
             {(prop.defaultValue ?
               <td style={{color: "rgb(236, 171, 32)"}}>{prop.defaultValue.value}</td>
               : <td style={{color: "#c6c6c6"}}>none</td>)}
-            <Markdown tagName="td">{prop.description}</Markdown>
+            {prop.description ?
+              <Markdown tagName="td">{prop.description}</Markdown>
+              : <td/>
+            }
           </tr>
         );
       })}
